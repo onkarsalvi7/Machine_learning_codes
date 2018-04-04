@@ -97,15 +97,15 @@ optimizerG = optim.SGD(gen.parameters(), lr = 0.005, momentum=0.1)
 
 def train(epoch):
     train_data = get_input()
-    noise = torch.FloatTensor(32, 100, 1, 1)
-    fixed_noise = torch.FloatTensor(32, 100, 1, 1).normal_(0,1)
-    label_real = torch.ones(32)
-    label_fake = torch.zeros(32)
+    noise = torch.FloatTensor(64, 100, 1, 1)
+    fixed_noise = torch.FloatTensor(64, 100, 1, 1).normal_(0,1)
+    label_real = torch.ones(64)
+    label_fake = torch.zeros(64)
     label_real = label_real.float()
     label_fake = label_fake.float()
                               
-    label = torch.FloatTensor(32)
-    image = torch.FloatTensor(32, 1, 28, 28)
+    label = torch.FloatTensor(64)
+    image = torch.FloatTensor(64, 1, 28, 28)
     criterion = torch.nn.BCELoss()
     
     if torch.cuda.is_available():
@@ -115,7 +115,7 @@ def train(epoch):
         criterion.cuda()
 
     
-    train_loader = D.DataLoader(train_data, batch_size = 32, drop_last = True)
+    train_loader = D.DataLoader(train_data, batch_size = 64, drop_last = True)
     for i in range(1, epoch+1):
         for batch_idx,(images, label) in enumerate(train_loader):
             #--------------------------------------Discriminator
@@ -130,7 +130,7 @@ def train(epoch):
             d_x = output.data.mean()
             
             #--------Train with fake data-----------
-            noise.copy_(torch.FloatTensor(32, 100, 1, 1).normal_(0,1))
+            noise.copy_(torch.FloatTensor(64, 100, 1, 1).normal_(0,1))
             noisev = Variable(noise)
             fake = gen(noisev)
             labelv = Variable(label_fake)
@@ -151,7 +151,7 @@ def train(epoch):
             optimizerG.step()
     
             print('[%d/%d][%d/%d] Loss_D: %.4f Loss_G: %.4f D(x): %.4f D(G(z)): %.4f / %.4f'
-                  % (i, epoch, batch_idx, 187,
+                  % (i, epoch, batch_idx, 200,
                      loss_real.data[0], loss_fake.data[0], d_x, DG_z1, DG_z2))
         
             if (batch_idx == 200):
@@ -159,11 +159,7 @@ def train(epoch):
         
 
 
-        '''if i % 5 == 0:
-            torchvision.utils.save_image(images,'real_samples.png')
-            fake = gen(fixed_noise)
-            torchvision.utils.save_image(fake.data,'fake_samples.png')
-        '''
+
         # Save Model
         if i % 5 == 0:
             torch.save(gen.state_dict(), 'netG.pth')
@@ -174,9 +170,8 @@ def train(epoch):
 
         
 
-
+#getting fake images from the network
 fake = train(100) 
 
+#Saving the fake images
 torchvision.utils.save_image(fake,'fake_samples.png')
-
-plt.imshow(torchvision.utils.make_grid(fake, normalize=True)[0,:,:])
