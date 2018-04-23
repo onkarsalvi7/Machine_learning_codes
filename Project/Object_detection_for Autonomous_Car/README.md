@@ -23,8 +23,9 @@ The bounding box is retained if the IoU > 0.6. All other bounding Boxes are remo
 After performing IoU, all boxes, except the box with the highest probability of detecting the object, are removed. The bounding box which is remaining is the bounding box for the object of a specific class detected in that image. 
 
 ## Project Details
+The file YOLO.py contains the main code for the algorithm. The file detection_utils.py contain supporting functions for the main code. Since the YOLO network requires very high computational power to train, I am using a network with pre-trained weights. 
 
-For this code, I have divided the image into 19 x 19 grid cells. Each cell predicts 5 bounding boxes for any class detected.
+For this code, the image is divided into 19 x 19 grid cells. Each cell predicts 5 bounding boxes for any class detected.
 The dataset consists of 80 classes, Thus the network can predict 80 classes. Each bounding box will need to have following details:
 
 1. Probability of the class detected
