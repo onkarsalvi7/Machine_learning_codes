@@ -1,7 +1,5 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Jun 28 17:25:07 2018
 
+"""
 @author: Onkar
 """
 
@@ -12,7 +10,6 @@ from sklearn.cluster import KMeans
 import tkinter
 
 
-
 Movies = pd.read_csv('movies.csv')
 Ratings = pd.read_csv('ratings.csv')
 Tags = pd.read_csv('tags.csv')
@@ -21,6 +18,14 @@ Links = pd.read_csv('links.csv')
 
 #Getting all the movies watched by each user
 def get_movies_by_user(ratings):
+    '''
+    get all the movies watched by each user
+    -----
+    Input: pandas dataframe with features [userId, movieId, rating, timestamp]
+    -----
+    Output: A dictionary with users as the key and the movies that each user watched as values
+    ------
+    '''
     user_movies = {}
     for user in ratings['userId']:
         user_movies[user] = []
@@ -31,8 +36,17 @@ def get_movies_by_user(ratings):
     return user_movies
         
 
-#Getting the genres of each movie in a list
+#Getting the genres of each movie in a pandas Dataframe
 def get_genres(movies):
+    '''
+    gets the genres of the movies in the dataset
+    -----
+    Input: pandas dataframe with features [movieId, title, genres]
+    -----
+    Output: A pandas dataframe with features [movieId, genre_1,..., genre_N] and 
+    a value 1 for the genre which the film belongs to and 0 elsewhere
+    ------
+    '''  
     def split_genres(genres):
         genre = [word for word in genres.split('|')]
         return genre
@@ -54,6 +68,16 @@ def get_genres(movies):
 
 
 def get_rating(ratings, movies):
+    '''
+    get the average user rating for each movie
+    -----
+    Input: 
+    ratings: pandas dataframe with features [userId, movieId, rating, timestamp]
+    movies: pandas dataframe with features [movieId, title, genres]
+    -----
+    Output: A dataframe with features [movieId , ave_rating]
+    ------
+    '''
     mov_ratings = {}
     movie = ratings['movieId'].values
     rating = ratings['rating'].values
@@ -80,6 +104,7 @@ def get_rating(ratings, movies):
         
     movie_ratings = pd.DataFrame(rat, index = movies['movieId'], columns = ['avg_rating'])
     return movie_ratings
+
         
 def get_movies_dataframe(groups):
     data = np.zeros((len(groups), len(groups)))
@@ -174,14 +199,16 @@ def get_input():
     get_mov = tkinter.Tk()
     get_mov.title('Movie Recommender')
     
-    frame = tkinter.Frame(get_mov)
+    frame = tkinter.Frame(get_mov, width=55, height = 35)
     frame.pack()
     
     #getting the drop down list of movies
     variable = tkinter.StringVar(get_mov)
-    variable.set("Choose a movie")
-    w = tkinter.OptionMenu(get_mov, variable, *OPTIONS)
-    w.pack()
+    variable.set('initial value')
+    while(variable.get()!="Choose a movie"):
+        variable.set("Choose a movie")
+        w = tkinter.OptionMenu(get_mov, variable, *OPTIONS)
+        w.pack()
     
     #for the OK button
     def ok():
@@ -196,6 +223,7 @@ def get_input():
 
 def show_output(names):
     show = tkinter.Tk()
+    show.title("Movies Recommended for you ")
     frame = tkinter.Frame(show, width=55, height = 35)
     frame.pack()
     
@@ -242,8 +270,10 @@ def main():
     
     #Train the apriori for the selected movie
     table = train_apriori(df, user_movies, N) 
+    
     #Sort in increasing order of lift value
     sorted_table = table.sort_values('lift_score')
+    
     #Pick only top 5 movies with the hoghest lift value
     rec_movies = np.asarray(sorted_table.index[-6:-1].values.tolist())  
     
@@ -254,6 +284,9 @@ def main():
         
 if __name__== "__main__":
     main()
+    
+    
+    
     
     
     
