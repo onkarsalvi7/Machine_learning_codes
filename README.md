@@ -15,3 +15,11 @@ Here are a few examples which reflect on the work that I have been doing in the 
 [Convolutional Neural Networks in Pytorch](https://github.com/onkarsalvi7/Machine_learning_codes/tree/basic_ml_algorithms/pytorch/mnist_modified_classification)
 
 [Convolutional Neural Networks in Keras](https://github.com/onkarsalvi7/Machine_learning_codes/tree/basic_ml_algorithms/Keras/Happy_face)
+
+### Implementation of Machine Learning Models
+
+[Regression]()
+[Classification]()
+[Clustering]()
+[Reinforcement Learning]()
+[Natural Language Processing]()
