@@ -18,8 +18,30 @@ Here are a few examples which reflect on the work that I have been doing in the 
 
 ### Implementation of Machine Learning Models
 
-[Regression]()
-[Classification]()
-[Clustering]()
-[Reinforcement Learning]()
-[Natural Language Processing]()
+[Simple Linear Regression](https://github.com/onkarsalvi7/Machine_learning_codes/tree/basic_ml_algorithms/Basic_ml_codes/Simple_Linear_Regression)
+
+[Multiple Linear Regression](https://github.com/onkarsalvi7/Machine_learning_codes/tree/basic_ml_algorithms/Basic_ml_codes/Multiple_Linear_Regression)
+
+[Polynomial Regression](https://github.com/onkarsalvi7/Machine_learning_codes/tree/basic_ml_algorithms/Basic_ml_codes/Polynomial_Regression)
+
+[Logistic Regression](https://github.com/onkarsalvi7/Machine_learning_codes/tree/basic_ml_algorithms/Basic_ml_codes/Logistic_Regression)
+
+[K-NN Classification](https://github.com/onkarsalvi7/Machine_learning_codes/tree/basic_ml_algorithms/Basic_ml_codes/KNN_classification)
+
+[Support Vector Machines (SVM)](https://github.com/onkarsalvi7/Machine_learning_codes/tree/basic_ml_algorithms/Basic_ml_codes/SVM)
+
+[Naive Bayes Classifier](https://github.com/onkarsalvi7/Machine_learning_codes/tree/basic_ml_algorithms/Basic_ml_codes/Naive_Bayes)
+
+[Decision Tree Classification](https://github.com/onkarsalvi7/Machine_learning_codes/tree/basic_ml_algorithms/Basic_ml_codes/Decision_Tree_Classification)
+
+[Random Forest Classification](https://github.com/onkarsalvi7/Machine_learning_codes/tree/basic_ml_algorithms/Basic_ml_codes/random_forest_classification)
+
+[K-Means Clustering](https://github.com/onkarsalvi7/Machine_learning_codes/tree/basic_ml_algorithms/Basic_ml_codes/KMeans_clustering)
+
+[Hierarchial Clustering](https://github.com/onkarsalvi7/Machine_learning_codes/tree/basic_ml_algorithms/Basic_ml_codes/Hierarchial_clustering)
+
+[Upper Confidence Bound](https://github.com/onkarsalvi7/Machine_learning_codes/tree/basic_ml_algorithms/Basic_ml_codes/UCB)
+
+[Thompson Sampling](https://github.com/onkarsalvi7/Machine_learning_codes/tree/basic_ml_algorithms/Basic_ml_codes/Thompson_sampling)
+
+[NLP_Bag_of Words](https://github.com/onkarsalvi7/Machine_learning_codes/tree/basic_ml_algorithms/Basic_ml_codes/Bag_of_words)
